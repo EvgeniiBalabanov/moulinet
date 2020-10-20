@@ -1,0 +1,17 @@
+&m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&o
+Usage: &Rmoulinet&o&g> &o[&bOptions&o] {&ytarget specification&o}
+_________________________________________________________________
+OPTIONS:
+	&blist&o	-	show a list of available projects
+	&bget&o	-	select a project to test
+	&bcreate&o	-	add a project for testing
+	&bhelp&o	-	call for help
+	&bexit&o	-	exit testing system
+_________________________________________________________________
+EXAMPLES:
+	&Rmoulinet&o&g> &o&blist&o
+	ft_strlen
+	&Rmoulinet&o&g> &o&bget&o &yft_strlen&o
+	&Rmoulinet&g:&yft_strlen&g> &o
+	&Rmoulinet&o&g> &o&bexit&o
+&m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&o

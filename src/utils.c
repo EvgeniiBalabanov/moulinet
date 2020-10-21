@@ -117,29 +117,32 @@ char **ft_split_str(char *src, char *pattern)
 	return (result);
 }
 
-void	ft_read_file(char **file_str, char *path)
+void	ft_read_file(char **file_str, char *path, t_config *config)
 {
 	int		file_description;
 	size_t	count_bite;
 	size_t	bytes_read;
 
+	path = ft_concat_str(2, config->path_local, path);
 	file_description = open(path, O_RDONLY);
 	count_bite = 0;
 	bytes_read = 1;
 	while ((int)bytes_read > 0)
 	{
-		*file_str = count_bite == 0 ? malloc(256) : realloc(*file_str, count_bite + 256);
+		*file_str = count_bite == 0 ? malloc(256 + 1) : realloc(*file_str, count_bite + 256 + 1);
 		bytes_read = read(file_description, *file_str + count_bite, 256);
 		count_bite += bytes_read;
 	}
+	(*file_str)[count_bite] = '\0';
+	free(path);
 	close(file_description);
 }
 
-void	ft_print_file(char *path)
+void	ft_print_file(char *path, t_config *config)
 {
 	char	*file_str;
 
-	ft_read_file(&file_str, path);
+	ft_read_file(&file_str, path, config);
 	ft_printf(file_str, path);
 	free(file_str);
 }

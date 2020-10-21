@@ -4,6 +4,7 @@ _________________________________________________________________
 OPTIONS:
 	&blist&o	-	show a list of available projects
 	&bget&o	-	select a project to test
+	&bback&o	-	remove the selected project
 	&bcreate&o	-	add a project for testing
 	&bhelp&o	-	call for help
 	&bexit&o	-	exit testing system

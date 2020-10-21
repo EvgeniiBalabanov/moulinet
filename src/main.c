@@ -1,8 +1,8 @@
 #include "header.h"
 
-void	ft_print_promt()
+void	ft_print_promt(t_config *config)
 {
-	ft_printf("&Rmoulinet&o&g> &o");
+	ft_printf("&Rmoulinet&g:&y%s&g> &o", config->project);
 }
 
 void	ft_list(void)
@@ -10,7 +10,21 @@ void	ft_list(void)
 	system("ls ./projects/ | cat");
 }
 
-void	ft_options(char *input)
+void	ft_set(char **options, t_config *config)
+{
+	if (ft_strcmp("path", *options)) config->path_project = options[1];
+}
+
+void	ft_show_config(t_config *config)
+{
+	char *file;
+
+	ft_read_file(&file, "/config/show_config.txt", config);
+	ft_printf(file, config->path_local, config->project, config->path_project);
+	free(file);
+}
+
+void	ft_options(char *input, t_config *config)
 {
 	char **options;
 
@@ -23,10 +37,13 @@ void	ft_options(char *input)
 	if (ft_strlen(input) == 1) return ;
 	options = ft_split_str(input, " ");
 
-	if (ft_strcmp("help", *options)) ft_print_file("./config/main_help.txt");
-	else if (ft_strcmp("get", *options)) ft_printf("Get!\n");
+	if (ft_strcmp("help", *options)) ft_print_file("/config/main_help.txt", config);
 	else if (ft_strcmp("list", *options)) ft_list();
+	else if (ft_strcmp("get", *options)) config->project = options[1];
+	else if (ft_strcmp("set", *options)) ft_set(options+1, config);
+	else if (ft_strcmp("config", *options)) ft_show_config(config);
 	else if (ft_strcmp("create", *options)) ft_printf("Create!\n");
+	else if (ft_strcmp("back", *options)) config->project = "\0";
 	else if (ft_strcmp("exit", *options))
 	{
 		// free();
@@ -38,23 +55,41 @@ void	ft_options(char *input)
 	}
 }
 
-void	init_config(t_config **config)
+void	init_config(t_config **config, char *argv[])
 {
+	int counter;
+
 	*config = malloc(sizeof(t_config));
-	(*config)->project = 0;
+	(*config)->project = "\0";
+	(*config)->path_project = "\0";
+	counter = ft_strlen(argv[0]);
+	while (counter--)
+	{
+		if (argv[0][counter] == '/')
+		{
+			argv[0][counter] = '\0';
+			break;
+		}
+	}
+	(*config)->path_local = argv[0];
 }
 
-int		main(void)
+int		main(int args, char *argv[])
 {
 	char		*input;
 	t_config	*config;
 
-	init_config(&config);
+	(void)args;
+	init_config(&config, argv);
 	while (1)
 	{
-		ft_print_promt();
+		ft_print_promt(config);
 		input = ft_input();
-		ft_options(input);
+		ft_options(input, config);
 	}
+	// char path[128];
+
+	// getcwd(path, 128);
+	// ft_printf("|%s|", path);
 	return (0);
 }

@@ -5,9 +5,13 @@ void	ft_print_promt(t_config *config)
 	ft_printf("&Rmoulinet&g:&y%s&g> &o", config->project);
 }
 
-void	ft_list(void)
+void	ft_list(t_config *config)
 {
-	system("ls ./projects/ | cat");
+	char *command;
+
+	command = ft_concat_str(3, "ls ", config->path_local, "/projects/ | cat");
+	system(command);
+	free(command);
 }
 
 void	ft_set(char **options, t_config *config)
@@ -37,22 +41,16 @@ void	ft_options(char *input, t_config *config)
 	if (ft_strlen(input) == 1) return ;
 	options = ft_split_str(input, " ");
 
-	if (ft_strcmp("help", *options)) ft_print_file("/config/main_help.txt", config);
-	else if (ft_strcmp("list", *options)) ft_list();
-	else if (ft_strcmp("get", *options)) config->project = options[1];
-	else if (ft_strcmp("set", *options)) ft_set(options+1, config);
-	else if (ft_strcmp("config", *options)) ft_show_config(config);
-	else if (ft_strcmp("test", *options)) ft_test(config);
-	else if (ft_strcmp("create", *options)) ft_printf("Create!\n");
-	else if (ft_strcmp("back", *options)) config->project = "\0";
-	else if (ft_strcmp("exit", *options))
-	{
-		exit(0);
-	}
-	else
-	{
-		system(input);
-	}
+	if (ft_strcmp("help", *options))		ft_print_file("/config/main_help.txt", config);
+	else if (ft_strcmp("list", *options))	ft_list(config);
+	else if (ft_strcmp("get", *options))	config->project = options[1];
+	else if (ft_strcmp("set", *options))	ft_set(options+1, config);
+	else if (ft_strcmp("config", *options))	ft_show_config(config);
+	else if (ft_strcmp("test", *options))	ft_test(config);
+	else if (ft_strcmp("create", *options))	ft_printf("Create!\n");
+	else if (ft_strcmp("back", *options))	config->project = "\0";
+	else if (ft_strcmp("exit", *options))	exit(0);
+	else system(input);
 }
 
 void	init_config(t_config **config, char *argv[])

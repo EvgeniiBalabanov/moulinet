@@ -13,6 +13,7 @@ void	ft_list(void)
 void	ft_set(char **options, t_config *config)
 {
 	if (ft_strcmp("path", *options)) config->path_project = options[1];
+	else ft_printf("&rError!&o\nNot correct option for set '&r%s&o'\n", *options);
 }
 
 void	ft_show_config(t_config *config)
@@ -33,7 +34,6 @@ void	ft_options(char *input, t_config *config)
 		ft_printf("\n");
 		return ;
 	}
-
 	if (ft_strlen(input) == 1) return ;
 	options = ft_split_str(input, " ");
 
@@ -42,11 +42,11 @@ void	ft_options(char *input, t_config *config)
 	else if (ft_strcmp("get", *options)) config->project = options[1];
 	else if (ft_strcmp("set", *options)) ft_set(options+1, config);
 	else if (ft_strcmp("config", *options)) ft_show_config(config);
+	else if (ft_strcmp("test", *options)) ft_test(config);
 	else if (ft_strcmp("create", *options)) ft_printf("Create!\n");
 	else if (ft_strcmp("back", *options)) config->project = "\0";
 	else if (ft_strcmp("exit", *options))
 	{
-		// free();
 		exit(0);
 	}
 	else
@@ -87,9 +87,5 @@ int		main(int args, char *argv[])
 		input = ft_input();
 		ft_options(input, config);
 	}
-	// char path[128];
-
-	// getcwd(path, 128);
-	// ft_printf("|%s|", path);
 	return (0);
 }

@@ -12,3 +12,5 @@ void	ft_read_file(char **file_str, char *path, t_config *config);
 char	*ft_red(char *src);
 char	*ft_green(char *src);
 char	*ft_blue(char *src);
+
+void	ft_test(t_config *config);

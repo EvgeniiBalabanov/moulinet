@@ -30,15 +30,25 @@ void	ft_test_cycle(char **args, t_config *config)
 {
 	char *command;
 	int output;
+	int count_error;
+	int counter;
 
-	while (*args)
+	count_error = 0;
+	counter = 0;
+	while (args[counter])
 	{
-		command = ft_concat_str(5, ft_path_get_str(config->path_local), "/projects/", config->project, "/test.out ", *args);
+		command = ft_concat_str(5, ft_path_get_str(config->path_local), "/projects/", config->project, "/test.out ", ft_str_remove_shielding(args[counter]));
 		output = system(command);
-		if (output) ft_printf("Exit code is |%d|\n", output);
+		if (output)
+		{
+			ft_printf("Exit code is |%d|\n", output);
+			count_error += 1;
+		}
 		free(command);
-		args++;
+		counter++;
 	}
+	if (!count_error) ft_printf("&gOK!&o\n");
+	else ft_printf("&rFAIL!\n&y\tFAIL\tOK\tALL\n\t&r%d\t&g%d\t&y%d&o\n", count_error, counter - count_error, counter);
 }
 
 void	ft_test(t_config *config)

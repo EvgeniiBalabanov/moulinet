@@ -122,11 +122,7 @@ int		main(int args, char *argv[])
 		ft_options(input, config);
 	}
 
-	// char **res = ft_split_str(argv[1], "/");
-	// while (*res)
-	// {
-	// 	ft_printf(*res);
-	// 	res++;
-	// }
+	// char *res = ft_str_remove_shielding(argv[1]);
+	// ft_printf(res);
 	return (0);
 }

@@ -10,6 +10,7 @@ void	ft_print_file(t_path *path);
 char	*ft_read_file(t_path *path);
 char	*ft_strcpy(char *src);
 char	*ft_strcpyn(char *src, int n);
+char	*ft_str_remove_shielding(char *str);
 
 char	*ft_red(char *src);
 char	*ft_green(char *src);

@@ -185,3 +185,53 @@ void	ft_print_file(t_path *path)
 	ft_printf(file_str);
 	free(file_str);
 }
+
+int		ft_atoi(char *str)
+{
+	int result;
+	int positive;
+
+	result = 0;
+	positive = 1;
+	while (9 <= *str && *str <= 13) str++;
+	if (*str == '-')
+	{
+		positive *= -1;
+		str++;
+	}
+	while ('0' <= *str && *str <= '9') result = result * 10 + (*str++ - '0');
+	return (result * positive);
+}
+
+char	*ft_str_remove_shielding(char *str)
+{
+	int len;
+	int counter;
+	char *result;
+	char *buf;
+	int counter_sym;
+
+	len = ft_strlen(str);
+	result = malloc(sizeof(char) * (len + 1));
+	counter = 0;
+	while (*str)
+	{
+		if (*str == '[')
+		{
+			str++;
+			counter_sym = 0;
+			while (*str != ']')
+			{
+				counter_sym++;
+				str++;
+			}
+			buf = ft_strcpyn(str - counter_sym, counter_sym);
+			result[counter++] = (char)ft_atoi(buf);
+			free(buf);
+		}
+		else result[counter++] = *str;
+		str++;
+	}
+	result[counter++] = '\0';
+	return (result);
+}

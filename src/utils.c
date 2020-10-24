@@ -88,61 +88,127 @@ int		ft_strcmp(char *trg, char *src)
 	return (0);
 }
 
+char	*ft_strcpy(char *src)
+{
+	char *result;
+	int len;
+
+	len = ft_strlen(src);
+	result = malloc(len + 1);
+	result[len] = '\0';
+	while (len--)
+	{
+		result[len] = src[len];
+	}
+	return (result);
+}
+
+char	*ft_strcpyn(char *src, int n)
+{
+	char *result;
+
+	result = malloc(n + 1);
+	result[n] = '\0';
+	while (n--)
+	{
+		result[n] = src[n];
+	}
+	return (result);
+}
+// char **ft_split_str(char *src, char *pattern)
+// {
+// 	char **result;
+// 	int counter_result;
+// 	int counter_src;
+// 	int counter_pattern = 0;
+
+// 	result = malloc(sizeof(char *) * 128);
+// 	counter_result = 0;
+// 	counter_src = 0;
+// 	while (src[counter_src])
+// 	{
+// 		if (pattern[counter_pattern] == src[counter_src])
+// 			counter_pattern++;
+// 		else counter_pattern = 0;
+// 		if ((pattern[counter_pattern] == 0) + !src[counter_src + 1] == 1)
+// 		{
+// 			src[counter_src - counter_pattern + 1 - (src[counter_src - counter_pattern] == '\n')] = '\0';
+// 			if (ft_strlen(src)) result[counter_result++] = src;
+// 			src = src + counter_src + 1;
+// 			counter_src = 0;
+// 			counter_pattern = 0;
+// 		}
+// 		else counter_src++;
+// 	}
+// 	result[counter_result++] = 0;
+// 	return (result);
+// }
+
 char **ft_split_str(char *src, char *pattern)
 {
 	char **result;
 	int counter_result;
+	int counter_pattern;
 	int counter_src;
-	int counter_pattern = 0;
+	int len_pattern;
 
-	result = malloc(sizeof(char *) * 128);
+
 	counter_result = 0;
+	counter_pattern = 0;
 	counter_src = 0;
-	while (src[counter_src])
+	len_pattern = ft_strlen(pattern);
+	result = malloc(sizeof(char *) * 128);
+	while (*src)
 	{
-		if (pattern[counter_pattern] == src[counter_src])
-			counter_pattern++;
-		else counter_pattern = 0;
-		if ((pattern[counter_pattern] == 0) + !src[counter_src + 1] == 1)
+		counter_src++;
+		if (*src == pattern[counter_pattern])
 		{
-			src[counter_src - counter_pattern + 1 - (src[counter_src - counter_pattern] == '\n')] = '\0';
-			if (ft_strlen(src)) result[counter_result++] = src;
-			src = src + counter_src + 1;
-			counter_src = 0;
-			counter_pattern = 0;
+			counter_pattern++;
+			if (counter_pattern == len_pattern)
+			{
+				result[counter_result++] = ft_strcpyn(src - counter_src + 1, counter_src - counter_pattern);
+				counter_src = 0;
+				counter_pattern = 0;
+			}
 		}
-		else counter_src++;
+		else counter_pattern = 0;
+		src++;
 	}
+	if (counter_src)
+		result[counter_result++] = ft_strcpyn(src - counter_src, counter_src - counter_pattern);
 	result[counter_result++] = 0;
 	return (result);
 }
 
-void	ft_read_file(char **file_str, char *path, t_config *config)
+char	*ft_read_file(t_path *path)
 {
 	int		file_description;
 	size_t	count_bite;
 	size_t	bytes_read;
+	char	*path_str;
+	char	*file_str;
 
-	path = ft_concat_str(2, config->path_local, path);
-	file_description = open(path, O_RDONLY);
+	path_str = ft_path_get_str(path);
+	file_description = open(path_str, O_RDONLY);
 	count_bite = 0;
 	bytes_read = 1;
 	while ((int)bytes_read > 0)
 	{
-		*file_str = count_bite == 0 ? malloc(256 + 1) : realloc(*file_str, count_bite + 256 + 1);
-		bytes_read = read(file_description, *file_str + count_bite, 256);
+		file_str = count_bite == 0 ? malloc(256 + 1) : realloc(file_str, count_bite + 256 + 1);
+		bytes_read = read(file_description, file_str + count_bite, 256);
 		count_bite += bytes_read;
 	}
-	(*file_str)[count_bite] = '\0';
-	free(path);
+	file_str[count_bite] = '\0';
+	free(path_str);
 	close(file_description);
+	return (file_str);
 }
 
-void	ft_print_file(char *path, t_config *config)
+void	ft_print_file(t_path *path)
 {
 	char	*file_str;
 
-	ft_read_file(&file_str, path, config);
-	ft_printf(file_str, path);
+	file_str = ft_read_file(path);
+	ft_printf(file_str);
 	free(file_str);
 }

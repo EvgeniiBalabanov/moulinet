@@ -18,6 +18,12 @@ void	ft_printf(char *params, ...)
 			}
 			else if (*str == 'd' || *str == 'c')
 				ft_print_int(va_arg(arg, int));
+			else if (*str == 'p')
+			{
+				char *buf = ft_path_get_str(va_arg(arg, t_path *));
+				ft_print_str(buf);
+				free(buf);
+			}
 		}
 		else if
 		 (*str == '&')

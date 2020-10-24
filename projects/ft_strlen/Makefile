@@ -1,20 +1,20 @@
-OUT			= test.out
+OUT				= test.out
 
-PATH_PROJECT	= /Users/e.balabanov/Desktop/Projects/moulinet/projects/ft_strlen/
+PROJECT			= ft_strlen
 
-MAIN		= main.c
+PATH_PROJECT	= /Users/e.balabanov/Desktop/Projects/21_school
 
-SRC 		= /Users/e.balabanov/Desktop/Projects/21_school/
+MAIN			= main.c
 
-COMPILE		= ft_strlen.c
+COMPILE			= ft_strlen.c
 
-WWW			= -Wall -Wextra -Werror
+WWW				= -Wall -Wextra -Werror
 
 all:
-	gcc ${WWW} ${SRC}${COMPILE} ${PATH_PROJECT}${MAIN} -o ${PATH_PROJECT}${OUT}
+	gcc ${WWW} ${PATH_PROJECT}/${COMPILE} ${MAIN} -o ${OUT}
 
 clean:
-	rm -rf ${PATH_PROJECT}*.o
+	rm -rf *.o
 
-fclean:
-	rm -rf ${PATH_PROJECT}${OUT}
+fclean:			clean
+	rm -rf ${OUT}

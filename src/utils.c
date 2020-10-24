@@ -22,6 +22,7 @@ int		ft_print_int(int num)
 	int res;
 	char a;
 
+	// if (num == 0) 
 	if (num < 0)
 	{
 		write(1, "-", 1);
@@ -115,34 +116,6 @@ char	*ft_strcpyn(char *src, int n)
 	}
 	return (result);
 }
-// char **ft_split_str(char *src, char *pattern)
-// {
-// 	char **result;
-// 	int counter_result;
-// 	int counter_src;
-// 	int counter_pattern = 0;
-
-// 	result = malloc(sizeof(char *) * 128);
-// 	counter_result = 0;
-// 	counter_src = 0;
-// 	while (src[counter_src])
-// 	{
-// 		if (pattern[counter_pattern] == src[counter_src])
-// 			counter_pattern++;
-// 		else counter_pattern = 0;
-// 		if ((pattern[counter_pattern] == 0) + !src[counter_src + 1] == 1)
-// 		{
-// 			src[counter_src - counter_pattern + 1 - (src[counter_src - counter_pattern] == '\n')] = '\0';
-// 			if (ft_strlen(src)) result[counter_result++] = src;
-// 			src = src + counter_src + 1;
-// 			counter_src = 0;
-// 			counter_pattern = 0;
-// 		}
-// 		else counter_src++;
-// 	}
-// 	result[counter_result++] = 0;
-// 	return (result);
-// }
 
 char **ft_split_str(char *src, char *pattern)
 {

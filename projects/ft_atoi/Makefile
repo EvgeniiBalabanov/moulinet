@@ -1,10 +1,10 @@
 OUT				= test.out
 
-PROJECT			= ft_strlen
+PROJECT			= ft_atoi
 
 MAIN			= main.c
 
-COMPILE			= ft_strlen.c
+COMPILE			= ft_atoi.c
 
 WWW				= -Wall -Wextra -Werror
 

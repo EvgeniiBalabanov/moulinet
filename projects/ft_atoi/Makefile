@@ -4,7 +4,7 @@ PROJECT			= ft_atoi
 
 MAIN			= main.c
 
-COMPILE			= ft_atoi.c
+COMPILE			= ${PROJECT}.c
 
 WWW				= -Wall -Wextra -Werror
 

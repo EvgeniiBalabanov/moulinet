@@ -4,7 +4,7 @@ PROJECT			= ft_strlen
 
 MAIN			= main.c
 
-COMPILE			= ft_strlen.c
+COMPILE			= ${PROJECT}.c
 
 WWW				= -Wall -Wextra -Werror
 

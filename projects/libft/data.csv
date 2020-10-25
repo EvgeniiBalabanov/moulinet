@@ -36,3 +36,11 @@ ft_isascii 0
 ft_isascii -12
 ft_isascii 123
 ft_isascii 512
+ft_isprint 0
+ft_isprint 30
+ft_isprint 31
+ft_isprint 32
+ft_isprint 67
+ft_isprint 126
+ft_isprint 127
+ft_isprint 128

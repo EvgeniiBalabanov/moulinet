@@ -20,5 +20,8 @@ void	ft_test(t_config *config);
 
 t_path	*ft_path_init(char *str);
 char	*ft_path_get_str(t_path *path);
-t_path	*ft_path_concat(t_path *old, t_path *new);
 void	ft_path_free(t_path *path);
+char	*ft_path_get_str_with_str(t_path *path, char *str_path);
+t_path	*ft_path_concat(t_path *old, t_path *new);
+t_path	*ft_path_concat_ps(t_path *old, char *new);
+t_path	*ft_path_concat_ss(char *old, char *new);

@@ -129,6 +129,31 @@ t_path	*ft_path_concat(t_path *old, t_path *new)
 	return (new);
 }
 
+t_path	*ft_path_concat_ps(t_path *old, char *new)
+{
+	t_path *new_path;
+	t_path *result;
+
+	new_path = ft_path_init(new);
+	result = ft_path_concat(old, new_path);
+	ft_path_free(new_path);
+	return (result);
+}
+
+t_path	*ft_path_concat_ss(char *old, char *new)
+{
+	t_path *old_path;
+	t_path *new_path;
+	t_path *result;
+
+	old_path = ft_path_init(old);
+	new_path = ft_path_init(new);
+	result = ft_path_concat(old_path, new_path);
+	ft_path_free(old_path);
+	ft_path_free(new_path);
+	return (result);
+}
+
 char	*ft_path_get_str_rec(t_path *path)
 {
 	char *callback;
@@ -156,4 +181,17 @@ char	*ft_path_get_str(t_path *path)
 		return (result);
 	}
 	return (ft_strcpy("None"));
+}
+
+char	*ft_path_get_str_with_str(t_path *path, char *str_path)
+{
+	t_path *other_path;
+	char *result;
+
+	other_path = ft_path_init(str_path);
+	path = ft_path_concat(path, other_path);
+	result = ft_path_get_str(path);
+	ft_path_free(other_path);
+	ft_path_free(path);
+	return (result);
 }

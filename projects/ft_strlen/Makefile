@@ -9,7 +9,7 @@ COMPILE			= ${PROJECT}.c
 WWW				= -Wall -Wextra -Werror
 
 all:
-	gcc ${WWW} ${PATH_PROJECT}/${COMPILE} ${MAIN} -o ${OUT}
+	gcc ${WWW} ${PATH_PROJECT}/${COMPILE} ${MAIN} test.c -o ${OUT} -I ./include/
 
 clean:
 	rm -rf *.o

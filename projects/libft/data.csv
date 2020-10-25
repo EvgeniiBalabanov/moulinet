@@ -1,0 +1,13 @@
+ft_strlen test
+ft_strlen hi
+ft_strlen ""
+ft_strlen "[9]"
+ft_strlen test_fail
+ft_atoi 0
+ft_atoi 123
+ft_atoi -2
+ft_atoi 345
+ft_atoi 2147483647
+ft_atoi -2147483648
+ft_atoi "[13]-1234"
+ft_atoi "[10][9][13]28234"

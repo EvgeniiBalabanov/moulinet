@@ -1,4 +1,16 @@
-int		main(void)
+#include "libft.h"
+#include <stdio.h>
+#include <string.h>
+#include "header.h"
+
+// int		test_ft_strlen(char *str);
+// int		test_ft_atoi(char *str);
+
+int		main(int args, char *argv[])
 {
-	return (0);
+	(void)args;
+
+	if (!strcmp(argv[1], "ft_strlen")) return (test_ft_strlen(argv[2]));
+	else if(!strcmp(argv[1], "ft_atoi")) return (test_ft_atoi(argv[2]));
+	return (-1);
 }

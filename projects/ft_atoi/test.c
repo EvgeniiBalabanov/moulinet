@@ -12,7 +12,7 @@ int		test_ft_atoi(char *str)
 	output = ft_atoi(str);
 	if (correct != output)
 	{
-		printf("\nCorrect: |%d|\nOutput: |%d|\n", correct, output);
+		printf("\nExample: |%s|\nCorrect: |%d|\nOutput: |%d|\n", str, correct, output);
 		return (-1);
 	}
 	return (0);

@@ -6,17 +6,27 @@ FUNCS			= ft_strlen ft_atoi
 
 MAIN			= main.c
 
+DATA			= data.csv
+
 COMPILE			= ${PROJECT}.a
 
 WWW				= -Wall -Wextra -Werror
 
 add_path := $(FUNCS:%=../%/test.c)
 
-all:		project_all create_include
+all:		project_all create_include create_data
 	gcc ${WWW} ${PATH_PROJECT}/${COMPILE} ${MAIN} $(add_path) -o ${OUT} -I ${PATH_PROJECT} -I header.h
 
+create_data:
+	> ${DATA}
+	for var in ${FUNCS};\
+	do\
+		sed "/^/s/^/$${var} /" ../$${var}/${DATA} >> ${DATA};\
+	done
+# cat ../$${var}/${DATA} >> data.txt;
+
 create_include:
-	echo "" > header.h
+	> header.h
 	for var in ${FUNCS};\
 	do\
 		cat ../$${var}/include/header.h >> header.h;\
@@ -29,7 +39,8 @@ project_fclean:
 	cd ${PATH_PROJECT} && make fclean
 
 clean:
-	rm -rf *.o header.h
+	rm -rf *.o 
+	# header.h ${DATA}
 
 fclean:			clean	project_fclean
 	rm -rf ${OUT}

@@ -12,3 +12,8 @@ ft_atoi -2147483648
 ft_atoi "[13]-1234"
 ft_atoi "[10][9][13]28234"
 ft_atoi -085
+ft_strjoin "HelloWorld" Hello World
+ft_strjoin "test1" "" test1
+ft_strjoin "test2" test2 ""
+ft_strjoin "ab" a b
+ft_strjoin "aAabcde" aA abcde

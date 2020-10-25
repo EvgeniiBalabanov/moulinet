@@ -24,3 +24,6 @@ ft_strcmp "D" ""
 ft_strcmp "S" "S"
 ft_strcmp "hello world" "hello world"
 ft_strcmp "hello world2" "hello world"
+ft_strncmp test test 3
+ft_strncmp hello_abc hello 4
+ft_strncmp abcde ab 3

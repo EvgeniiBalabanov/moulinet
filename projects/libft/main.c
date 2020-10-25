@@ -13,6 +13,7 @@ int		main(int args, char *argv[])
 	if (!strcmp(argv[1], "ft_strlen")) result = test_ft_strlen(argv[2]);
 	else if(!strcmp(argv[1], "ft_atoi")) result = test_ft_atoi(argv[2]);
 	else if(!strcmp(argv[1], "ft_strjoin")) result = test_ft_strjoin(argv[2], argv[3], argv[4]);
+	else if(!strcmp(argv[1], "ft_strcmp")) result = test_ft_strcmp(argv[2], argv[3]);
 	if (result) printf("In %s project\n", argv[1]);
 	return (result);
 }

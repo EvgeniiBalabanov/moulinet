@@ -2,7 +2,7 @@ OUT				= test.out
 
 PROJECT			= libft
 
-FUNCS			= ft_strlen ft_atoi ft_strjoin
+FUNCS			= ft_strlen ft_atoi ft_strjoin ft_strcmp
 
 MAIN			= main.c
 

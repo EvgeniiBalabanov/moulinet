@@ -17,3 +17,10 @@ ft_strjoin "test1" "" test1
 ft_strjoin "test2" test2 ""
 ft_strjoin "ab" a b
 ft_strjoin "aAabcde" aA abcde
+ft_strcmp test test
+ft_strcmp "" ""
+ft_strcmp "" "a"
+ft_strcmp "D" ""
+ft_strcmp "S" "S"
+ft_strcmp "hello world" "hello world"
+ft_strcmp "hello world2" "hello world"

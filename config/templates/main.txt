@@ -3,5 +3,5 @@
 int		main(int args, char *argv[])
 {
 	(void)args;
-	return (test_%s(argv[1]));
+	return (test_`s(argv[1]));
 }

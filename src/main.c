@@ -38,7 +38,7 @@ void	ft_show_config(t_config *config)
 {
 	char *file;
 
-	file = ft_read_file(config->path_config_template);
+	file = ft_file_read(config->path_config_template);
 	ft_printf(file, config->path_local, config->project, config->path_project);
 
 	free(file);
@@ -56,13 +56,13 @@ void	ft_options(char *input, t_config *config)
 	if (ft_strlen(input) == 1) return ;
 	options = ft_split_str(input, " ");
 
-	if (ft_strcmp("help", *options))		ft_print_file(config->path_main_help);
+	if (ft_strcmp("help", *options))		ft_file_print(config->path_main_help);
 	else if (ft_strcmp("list", *options))	ft_list(config);
 	else if (ft_strcmp("get", *options))	config->project = options[1];
 	else if (ft_strcmp("set", *options))	ft_set(options+1, config);
 	else if (ft_strcmp("config", *options))	ft_show_config(config);
 	else if (ft_strcmp("test", *options))	ft_test(config);
-	else if (ft_strcmp("create", *options))	ft_printf("Create!\n");
+	else if (ft_strcmp("create", *options))	ft_create(config, options[1]);
 	else if (ft_strcmp("back", *options))	config->project = "\0";
 	else if (ft_strcmp("exit", *options))	exit(0);
 	else system(input);
@@ -83,10 +83,14 @@ void	init_config(t_config **config, char *argv[])
 			break;
 		}
 	}
-	(*config)->path_local = ft_path_init(argv[0]);
-	(*config)->path_project = 0;
-	(*config)->path_config_template = ft_path_concat_ps((*config)->path_local, "./config/show_config.txt");
-	(*config)->path_main_help = ft_path_concat_ps((*config)->path_local, "./config/main_help.txt");
+	(*config)->path_project				= 0;
+	(*config)->path_local				= ft_path_init(argv[0]);
+	(*config)->path_config_template		= ft_path_concat_ps((*config)->path_local, "./config/show_config.txt");
+	(*config)->path_main_help			= ft_path_concat_ps((*config)->path_local, "./config/main_help.txt");
+	(*config)->path_template_header		= ft_path_concat_ps((*config)->path_local, "./config/templates/header.txt");
+	(*config)->path_template_main		= ft_path_concat_ps((*config)->path_local, "./config/templates/main.txt");
+	(*config)->path_template_makefile	= ft_path_concat_ps((*config)->path_local, "./config/templates/Makefile.txt");
+	(*config)->path_template_test		= ft_path_concat_ps((*config)->path_local, "./config/templates/test.txt");
 }
 
 int		main(int args, char *argv[])

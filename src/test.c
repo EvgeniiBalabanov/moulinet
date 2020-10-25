@@ -20,7 +20,7 @@ void	ft_get_args(char ***args, t_config *config)
 	path_str = ft_concat_str(3, "/projects/", config->project, "/data.csv");
 	path = ft_path_init(path_str);
 	all_path = ft_path_concat(config->path_local, path);
-	file = ft_read_file(all_path);
+	file = ft_file_read(all_path);
 	*args = ft_split_str(file, "\n");
 	free(path);
 	free(file);

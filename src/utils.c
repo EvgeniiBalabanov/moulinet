@@ -153,39 +153,6 @@ char **ft_split_str(char *src, char *pattern)
 	return (result);
 }
 
-char	*ft_read_file(t_path *path)
-{
-	int		file_description;
-	size_t	count_bite;
-	size_t	bytes_read;
-	char	*path_str;
-	char	*file_str;
-
-	path_str = ft_path_get_str(path);
-	file_description = open(path_str, O_RDONLY);
-	count_bite = 0;
-	bytes_read = 1;
-	while ((int)bytes_read > 0)
-	{
-		file_str = count_bite == 0 ? malloc(256 + 1) : realloc(file_str, count_bite + 256 + 1);
-		bytes_read = read(file_description, file_str + count_bite, 256);
-		count_bite += bytes_read;
-	}
-	file_str[count_bite] = '\0';
-	free(path_str);
-	close(file_description);
-	return (file_str);
-}
-
-void	ft_print_file(t_path *path)
-{
-	char	*file_str;
-
-	file_str = ft_read_file(path);
-	ft_printf(file_str);
-	free(file_str);
-}
-
 int		ft_atoi(char *str)
 {
 	int result;
@@ -233,5 +200,52 @@ char	*ft_str_remove_shielding(char *str)
 		str++;
 	}
 	result[counter++] = '\0';
+	return (result);
+}
+
+void	ft_str_add_letter(char **src, int counter, int *size, char letter)
+{
+	if (*size <= counter)
+	{
+		*size += 32;
+		*src = realloc(*src, *size + 1);
+	}
+	(*src)[counter] = letter;
+}
+
+char	*ft_str_add_args(char *str, ...)
+{
+	char *result;
+	char *include_str;
+	int counter;
+	int size;
+	va_list arg;
+
+	counter = 0;
+	va_start(arg, str);
+	size = 32;
+	result = malloc(size + 1);
+	while (*str)
+	{
+		if (*str == '`')
+		{
+			str++;
+			if (*str == 's')
+			{
+				include_str = va_arg(arg, char *);
+				while (*include_str)
+				{
+					ft_str_add_letter(&result, counter++, &size, *include_str++);
+				}
+			}
+		}
+		else
+		{
+			ft_str_add_letter(&result, counter++, &size, *str);
+		}
+		str++;
+	}
+	result[counter++] = '\0';
+	va_end(arg);
 	return (result);
 }

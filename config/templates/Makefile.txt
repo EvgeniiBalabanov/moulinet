@@ -1,6 +1,6 @@
 OUT				= test.out
 
-PROJECT			= %s
+PROJECT			= `s
 
 MAIN			= main.c
 

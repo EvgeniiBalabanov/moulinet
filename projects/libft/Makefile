@@ -10,13 +10,17 @@ COMPILE			= ${PROJECT}.a
 
 WWW				= -Wall -Wextra -Werror
 
+add_path := $(FUNCS:%=../%/test.c)
+
 all:		project_all create_include
-	gcc ${WWW} ${PATH_PROJECT}/${COMPILE} ${MAIN} ../ft_strlen/test.c ../ft_atoi/test.c -o ${OUT} -I ${PATH_PROJECT} -I header.h
+	gcc ${WWW} ${PATH_PROJECT}/${COMPILE} ${MAIN} $(add_path) -o ${OUT} -I ${PATH_PROJECT} -I header.h
 
 create_include:
 	echo "" > header.h
-	cat ../ft_strlen/include/header.h >> header.h
-	cat ../ft_atoi/include/header.h >> header.h
+	for var in ${FUNCS};\
+	do\
+		cat ../$${var}/include/header.h >> header.h;\
+	done
 
 project_all:
 	cd ${PATH_PROJECT} && make

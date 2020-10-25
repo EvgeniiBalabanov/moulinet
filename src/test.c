@@ -47,8 +47,9 @@ void	ft_test_cycle(char **args, t_config *config)
 		free(command);
 		counter++;
 	}
+	ft_printf("&y\tFAIL\tOK\tALL\n\t&r%d\t&g%d\t&y%d&o\n", count_error, counter - count_error, counter);
 	if (!count_error) ft_printf("&gOK!&o\n");
-	else ft_printf("&rFAIL!\n&y\tFAIL\tOK\tALL\n\t&r%d\t&g%d\t&y%d&o\n", count_error, counter - count_error, counter);
+	else ft_printf("&rFAIL!&o\n");
 }
 
 void	ft_test(t_config *config)

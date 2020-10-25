@@ -27,3 +27,8 @@ ft_strcmp "hello world2" "hello world"
 ft_strncmp test test 3
 ft_strncmp hello_abc hello 4
 ft_strncmp abcde ab 3
+ft_itoa -123
+ft_itoa 78
+ft_itoa 1234
+ft_itoa 2147483647
+ft_itoa -2147483648

@@ -32,3 +32,7 @@ ft_itoa 78
 ft_itoa 1234
 ft_itoa 2147483647
 ft_itoa -2147483648
+ft_isascii 0
+ft_isascii -12
+ft_isascii 123
+ft_isascii 512

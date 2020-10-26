@@ -44,3 +44,16 @@ ft_isprint 67
 ft_isprint 126
 ft_isprint 127
 ft_isprint 128
+ft_isdigit -100
+ft_isdigit 0
+ft_isdigit 11
+ft_isdigit 45
+ft_isdigit 46
+ft_isdigit 47
+ft_isdigit 48
+ft_isdigit 49
+ft_isdigit 56
+ft_isdigit 57
+ft_isdigit 58
+ft_isdigit 127
+ft_isdigit 1024

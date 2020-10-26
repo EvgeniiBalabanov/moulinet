@@ -1,6 +1,6 @@
 #include "header.h"
 
-void	ft_create_header(t_config *config, char *name)
+static void	ft_create_header(t_config *config, char *name)
 {
 	char *str;
 	char *str_path;
@@ -18,7 +18,7 @@ void	ft_create_header(t_config *config, char *name)
 	free(str_with_args);
 }
 
-void	ft_create_main(t_config *config, char *name)
+static void	ft_create_main(t_config *config, char *name)
 {
 	char *str;
 	char *str_path;
@@ -36,7 +36,7 @@ void	ft_create_main(t_config *config, char *name)
 	free(str_with_args);
 }
 
-void	ft_create_makefile(t_config *config, char *name)
+static void	ft_create_makefile(t_config *config, char *name)
 {
 	char *str;
 	char *str_path;
@@ -54,7 +54,7 @@ void	ft_create_makefile(t_config *config, char *name)
 	free(str_with_args);
 }
 
-void	ft_create_test(t_config *config, char *name)
+static void	ft_create_test(t_config *config, char *name)
 {
 	char *str;
 	char *str_path;
@@ -72,7 +72,7 @@ void	ft_create_test(t_config *config, char *name)
 	free(str_with_args);
 }
 
-void	ft_create_data(t_config *config, char *name)
+static void	ft_create_data(t_config *config, char *name)
 {
 	char *str_path;
 	t_path *path;
@@ -84,7 +84,7 @@ void	ft_create_data(t_config *config, char *name)
 	free(str_path);
 }
 
-void	ft_create_folders(t_config *config, char *name)
+static void	ft_create_folders(t_config *config, char *name)
 {
 	char *str_path;
 	t_path *path_folder;

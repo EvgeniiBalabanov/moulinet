@@ -35,16 +35,6 @@ void	ft_file_write(t_path *path, char *str)
 	write(file_description, str, ft_strlen(str));
 }
 
-void	ft_file_write_with_args(t_path *path, char *str, ...)
-{
-	char *str_with_args;
-
-	str_with_args = ft_str_add_args(str);
-	ft_file_write(path, str_with_args);
-
-	free(str_with_args);
-}
-
 void	ft_file_print(t_path *path)
 {
 	char	*file_str;

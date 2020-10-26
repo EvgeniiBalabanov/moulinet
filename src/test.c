@@ -14,15 +14,12 @@ void	ft_get_args(char ***args, t_config *config)
 {
 	char *path_str;
 	char *file;
-	t_path *path;
 	t_path *all_path;
 
-	path_str = ft_concat_str(3, "/projects/", config->project, "/data.csv");
-	path = ft_path_init(path_str);
-	all_path = ft_path_concat(config->path_local, path);
+	path_str = ft_concat_str(3, "./projects/", config->project, "/data.csv");
+	all_path = ft_path_concat_ps(config->path_local, path_str);
 	file = ft_file_read(all_path);
 	*args = ft_split_str(file, "\n");
-	free(path);
 	free(file);
 }
 

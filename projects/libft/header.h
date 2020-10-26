@@ -7,3 +7,5 @@ int		test_ft_itoa(char *str);
 int		test_ft_isascii(char *str);
 int		test_ft_isprint(char *str);
 int		test_ft_isdigit(char *str);
+int		test_ft_isalpha(char *str);
+int		test_ft_isalnum(char *str);

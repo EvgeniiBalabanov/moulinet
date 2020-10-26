@@ -9,3 +9,4 @@ int		test_ft_isprint(char *str);
 int		test_ft_isdigit(char *str);
 int		test_ft_isalpha(char *str);
 int		test_ft_isalnum(char *str);
+int		test_ft_toupper(char *str);

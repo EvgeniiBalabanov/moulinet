@@ -21,6 +21,7 @@ int		main(int args, char *argv[])
 	else if(!strcmp(argv[1], "ft_isdigit")) result = test_ft_isdigit(argv[2]);
 	else if(!strcmp(argv[1], "ft_isalpha")) result = test_ft_isalpha(argv[2]);
 	else if(!strcmp(argv[1], "ft_isalnum")) result = test_ft_isalnum(argv[2]);
+	else if(!strcmp(argv[1], "ft_toupper")) result = test_ft_toupper(argv[2]);
 	if (result) printf("In %s project\n", argv[1]);
 	return (result);
 }
